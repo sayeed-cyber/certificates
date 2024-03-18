@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Certificate</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6b92e8, #4e4256);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
         .certificate {
             background-color: #ffffff;
@@ -21,17 +24,17 @@
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             max-width: 90%;
+            max-height: 80vh;
             position: relative;
             perspective: 1000px;
-            overflow: hidden;
-            transition: transform 0.5s;
-        }
-        .certificate:hover {
-            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .certificate img {
             max-width: 100%;
-            height: auto;
+            max-height: calc(80vh - 40px); /* Adjust height based on container padding */
             display: block;
             margin: 0 auto;
             border-radius: 10px;
@@ -48,39 +51,20 @@
             right: 0;
             bottom: 0;
             backface-visibility: hidden;
-            transform: rotateY(-180deg);
-            transition: transform 0.5s;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
         .certificate:hover .certificate-info {
-            transform: rotateY(0deg);
-        }
-        .fullscreen-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: #4CAF50;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 16px;
-            font-weight: bold;
-            z-index: 1;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .fullscreen-btn:hover {
-            background-color: #45a049;
+            opacity: 1;
         }
         .footer {
             text-align: center;
             margin-top: 20px;
-            color: #888;
+            color: #ffffff;
             width: 100%;
             position: absolute;
             bottom: 10px;
@@ -113,37 +97,57 @@
                 border-color: #08d9d6;
             }
         }
+        .background-graphics {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+        .smoke-effect {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            pointer-events: none;
+            z-index: -1;
+            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 50%);
+            background-size: 200% 200%;
+            animation: smokeEffect 10s ease infinite;
+            border-radius: 20px;
+        }
+        @keyframes smokeEffect {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="background-graphics"></div>
     <div class="certificate">
         <div class="neon-border"></div>
+        <div class="smoke-effect"></div>
         <img src="1.png" alt="Certificate">
-        <div class="certificate-info">
-            <h2>Additional Information</h2>
-            <p>This is some additional information about your certificate.</p>
-            <p>You can customize this section to include any relevant details.</p>
-        </div>
-        <button class="fullscreen-btn" onclick="toggleFullscreen()">View Fullscreen</button>
+    
+<div class="certificate-info">
+    <p>Data Visualisation using Python</p>
+    <p>awarded to sayeed khan</p>
+</div>
     </div>
 
     <div class="footer">
-        Made with ❤️ by [Your Name]
-    </div>
-
-    <script>
-        function toggleFullscreen() {
-            const elem = document.documentElement;
-            if (!document.fullscreenElement) {
-                elem.requestFullscreen().catch(err => {
-                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-                });
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-        }
-    </script>
+       website by sayeed khan
 </body>
 </html>
+
